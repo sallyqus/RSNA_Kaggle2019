@@ -71,6 +71,18 @@ def apply_window_policy(image, row, policy):
             image4,
             image5,
         ]).transpose(1,2,0)
+    elif policy == 4:  #  -50–150, 100–300 and 250–450.
+        image1 = misc.apply_window(image, 50, 200) # brain
+        image2 = misc.apply_window(image, 200, 200) # subdural
+        image3 = misc.apply_window(image, 350, 200) # bone
+        image1 = (image1 - (-50)) / 200
+        image2 = (image2 - (100)) / 200
+        image3 = (image3 - (250)) / 200
+        image = np.array([
+            image1,# - image1.mean(),
+            image2,# - image2.mean(),
+            image3, # - image3.mean(),
+        ]).transpose(1,2,0)
         
     else:
         raise NotImplementedError
