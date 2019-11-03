@@ -17,7 +17,13 @@ from .utils.logger import log
 
 def get_loss(cfg):
     #loss = getattr(nn, cfg.loss.name)(**cfg.loss.params)
-    loss = getattr(nn, cfg.loss.name)(weight=torch.FloatTensor([2,1,1,1,1,1]).cuda(), **cfg.loss.params)
+    try:
+        loss_weight = cfg.loss.weight
+    except:
+        loss_weight = [2,1,1,1,1,1]
+    print("Using loss weight:", loss_weight)
+    # loss = getattr(nn, cfg.loss.name)(weight=torch.FloatTensor([2,1,1,1,1,1]).cuda(), **cfg.loss.params)
+    loss = getattr(nn, cfg.loss.name)(weight=torch.FloatTensor(loss_weight).cuda(), **cfg.loss.params)
     log('loss: %s' % cfg.loss.name)
     return loss
 
@@ -53,6 +59,9 @@ def get_model(cfg):
         model = EfficientNet.from_pretrained(cfg.model.name, cfg.model.n_output)
         return model
 
+    elif cfg.model.name in ['efficientnet-b2']:
+         model = EfficientNet.from_pretrained(cfg.model.name, cfg.model.n_output)
+         return model
 	#fixresnext 
  	#elif cfg.model.name in ['']
 
