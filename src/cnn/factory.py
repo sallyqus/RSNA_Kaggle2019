@@ -9,6 +9,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensor
 import pretrainedmodels
 from efficientnet_pytorch import EfficientNet
+from efficientnet_pytorch.utils import Conv2dDynamicSamePadding as Conv2d
 
 from .dataset.custom_dataset import CustomDataset
 from .transforms.transforms import RandomResizedCrop
@@ -50,13 +51,22 @@ def get_model(cfg):
     log(f'model: {cfg.model.name}')
     log(f'pretrained: {cfg.model.pretrained}')
 
+    try: 
+        channel = cfg.model.channel
+    except:
+        channel = 3
+    log(f'input channel: {channel}')
+    
     if cfg.model.name in ['resnext101_32x8d_wsl']:
         model = torch.hub.load('facebookresearch/WSL-Images', cfg.model.name)
         model.fc = torch.nn.Linear(2048, cfg.model.n_output)
         return model
 
     elif cfg.model.name in ['efficientnet-b7']:
-        model = EfficientNet.from_pretrained(cfg.model.name, cfg.model.n_output)
+        model = EfficientNet.from_pretrained(cfg.model.name, cfg.model.n_output) #, in_channels=channel)
+        # first layer: Conv2dStaticSamePadding(3, 64, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        # model._conv_stem = Conv2d(channel, 64, kernel_size=(3, 3), stride=(2, 2), bias=False)
+        model._conv_stem = Conv2d(channel, out_channels=64, kernel_size=3, stride=2, bias=False)
         return model
 
     elif cfg.model.name in ['efficientnet-b2']:

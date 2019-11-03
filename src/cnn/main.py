@@ -59,6 +59,7 @@ def main():
     log(f'acc: {cfg.data.train.n_grad_acc}')
 
     model = factory.get_model(cfg)
+    # print(model) #.summary()
     model.cuda()
 
     if cfg.mode == 'train':
