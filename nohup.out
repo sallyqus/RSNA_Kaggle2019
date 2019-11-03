@@ -1,0 +1,167 @@
+
+----- 2019-10-17 11:11:13 -----
+/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/main.py train ./conf/model001.py --fold 0 --gpu 0
+logpath: ./model/model001/train_fold0.log
+mode: train
+workdir: ./model/model001
+fold: 0
+batch size: 28
+acc: 1
+model: se_resnext50_32x4d
+pretrained: imagenet
+loss: BCEWithLogitsLoss
+optim: Adam
+dataset_policy: all
+window_policy: 2
+read dataset (531554 records)
+applied dataset_policy all (531554 records)
+use default(random) sampler
+dataset_policy: all
+window_policy: 2
+read dataset (133860 records)
+applied dataset_policy all (133860 records)
+use default(random) sampler
+train data: loaded 560 records
+valid data: loaded 560 records
+last_epoch: -1
+apex True
+Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O1
+cast_model_type        : None
+patch_torch_functions  : True
+keep_batchnorm_fp32    : None
+master_weights         : None
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O1
+cast_model_type        : None
+patch_torch_functions  : True
+keep_batchnorm_fp32    : None
+master_weights         : None
+loss_scale             : dynamic
+Warning:  multi_tensor_applier fused unscale kernel is unavailable, possibly because apex was installed without --cuda_ext --cpp_ext. Using Python fallback.  Original ImportError was: ModuleNotFoundError("No module named 'amp_C'")
+
+----- epoch 0 -----
+Traceback (most recent call last):
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/main.py", line 251, in <module>
+    main()
+  File "/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/main.py", line 65, in main
+    train(cfg, model)
+  File "/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/main.py", line 132, in train
+    run_nn(cfg.data.train, 'train', model, loader_train, criterion=criterion, optim=optim, apex=cfg.apex)
+  File "/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/main.py", line 166, in run_nn
+    for i, (inputs, targets, ids) in enumerate(loader):
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 819, in __next__
+    return self._process_data(data)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 846, in _process_data
+    data.reraise()
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/_utils.py", line 369, in reraise
+    raise self.exc_type(msg)
+KeyError: Caught KeyError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/utils/data/_utils/worker.py", line 178, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/dataset/custom_dataset.py", line 94, in __getitem__
+    image = self.transforms(image=image)['image']
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/core/composition.py", line 176, in __call__
+    data = t(force_apply=force_apply, **data)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/core/transforms_interface.py", line 87, in __call__
+    return self.apply_with_params(params, **kwargs)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/core/transforms_interface.py", line 100, in apply_with_params
+    res[key] = target_function(arg, **dict(params, **target_dependencies))
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/augmentations/transforms.py", line 2305, in apply
+    return F.brightness_contrast_adjust(img, alpha, beta, self.brightness_by_max)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/augmentations/functional.py", line 1278, in brightness_contrast_adjust
+    return _brightness_contrast_adjust_non_uint(img, alpha, beta, beta_by_max)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/augmentations/functional.py", line 30, in wrapped_function
+    return clip(func(img, *args, **kwargs), dtype, maxval)
+  File "/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/albumentations/augmentations/functional.py", line 1246, in _brightness_contrast_adjust_non_uint
+    max_value = MAX_VALUES_BY_DTYPE[dtype]
+KeyError: dtype('float64')
+
+
+----- 2019-10-17 11:13:30 -----
+/home/xum/kaggle/kaggle-rsna-intracranial-hemorrhage/src/cnn/main.py train ./conf/model001.py --fold 0 --gpu 0
+logpath: ./model/model001/train_fold0.log
+mode: train
+workdir: ./model/model001
+fold: 0
+batch size: 28
+acc: 1
+model: se_resnext50_32x4d
+pretrained: imagenet
+loss: BCEWithLogitsLoss
+optim: Adam
+dataset_policy: all
+window_policy: 2
+read dataset (531554 records)
+applied dataset_policy all (531554 records)
+use default(random) sampler
+dataset_policy: all
+window_policy: 2
+read dataset (133860 records)
+applied dataset_policy all (133860 records)
+use default(random) sampler
+train data: loaded 560 records
+valid data: loaded 560 records
+last_epoch: -1
+apex True
+Selected optimization level O1:  Insert automatic casts around Pytorch functions and Tensor methods.
+
+Defaults for this optimization level are:
+enabled                : True
+opt_level              : O1
+cast_model_type        : None
+patch_torch_functions  : True
+keep_batchnorm_fp32    : None
+master_weights         : None
+loss_scale             : dynamic
+Processing user overrides (additional kwargs that are not None)...
+After processing overrides, optimization options are:
+enabled                : True
+opt_level              : O1
+cast_model_type        : None
+patch_torch_functions  : True
+keep_batchnorm_fp32    : None
+master_weights         : None
+loss_scale             : dynamic
+Warning:  multi_tensor_applier fused unscale kernel is unavailable, possibly because apex was installed without --cuda_ext --cpp_ext. Using Python fallback.  Original ImportError was: ModuleNotFoundError("No module named 'amp_C'")
+
+----- epoch 0 -----
+[train] 1/20 9(s) eta:171(s) loss:0.837635 loss200:0.837635 lr:6.00e-05[train] 2/20 10(s) eta:90(s) loss:0.809190 loss200:0.809190 lr:6.00e-05[train] 3/20 10(s) eta:56(s) loss:0.781667 loss200:0.781667 lr:6.00e-05[train] 4/20 11(s) eta:44(s) loss:0.754591 loss200:0.754591 lr:6.00e-05[train] 5/20 11(s) eta:33(s) loss:0.731634 loss200:0.731634 lr:6.00e-05[train] 6/20 12(s) eta:28(s) loss:0.702247 loss200:0.702247 lr:6.00e-05[train] 7/20 12(s) eta:22(s) loss:0.674704 loss200:0.674704 lr:6.00e-05[train] 8/20 12(s) eta:18(s) loss:0.655827 loss200:0.655827 lr:6.00e-05[train] 9/20 13(s) eta:15(s) loss:0.633851 loss200:0.633851 lr:6.00e-05[train] 10/20 13(s) eta:13(s) loss:0.612821 loss200:0.612821 lr:6.00e-05[train] 11/20 14(s) eta:11(s) loss:0.593419 loss200:0.593419 lr:6.00e-05[train] 12/20 14(s) eta:9(s) loss:0.577882 loss200:0.577882 lr:6.00e-05[train] 13/20 15(s) eta:8(s) loss:0.567758 loss200:0.567758 lr:6.00e-05[train] 14/20 15(s) eta:6(s) loss:0.552357 loss200:0.552357 lr:6.00e-05[train] 15/20 15(s) eta:5(s) loss:0.539843 loss200:0.539843 lr:6.00e-05[train] 16/20 16(s) eta:4(s) loss:0.534499 loss200:0.534499 lr:6.00e-05[train] 17/20 16(s) eta:2(s) loss:0.526055 loss200:0.526055 lr:6.00e-05[train] 18/20 17(s) eta:1(s) loss:0.516812 loss200:0.516812 lr:6.00e-05[train] 19/20 17(s) eta:0(s) loss:0.507079 loss200:0.507079 lr:6.00e-05[train] 20/20 17(s) eta:0(s) loss:0.494969 loss200:0.494969 lr:6.00e-05[train] 20/20 17(s) eta:0(s) loss:0.494969 loss200:0.494969 lr:6.00e-05 auc:0.5401 micro:0.5429 macro:0.5373
+0.424256 [0.472291 0.341477 0.476884 0.389578 0.39245  0.42482 ]
+[valid] 1/20 1(s) eta:19(s) loss:0.294748 loss200:0.294748 lr:0.00e+00[valid] 2/20 1(s) eta:9(s) loss:0.348213 loss200:0.348213 lr:0.00e+00[valid] 3/20 2(s) eta:11(s) loss:0.293285 loss200:0.293285 lr:0.00e+00[valid] 4/20 2(s) eta:8(s) loss:0.262667 loss200:0.262667 lr:0.00e+00[valid] 5/20 3(s) eta:9(s) loss:0.283915 loss200:0.283915 lr:0.00e+00[valid] 6/20 3(s) eta:7(s) loss:0.270005 loss200:0.270005 lr:0.00e+00[valid] 7/20 3(s) eta:5(s) loss:0.289354 loss200:0.289354 lr:0.00e+00[valid] 8/20 3(s) eta:4(s) loss:0.305709 loss200:0.305709 lr:0.00e+00[valid] 9/20 4(s) eta:4(s) loss:0.301924 loss200:0.301924 lr:0.00e+00[valid] 10/20 4(s) eta:4(s) loss:0.308138 loss200:0.308138 lr:0.00e+00[valid] 11/20 4(s) eta:3(s) loss:0.309878 loss200:0.309878 lr:0.00e+00[valid] 12/20 5(s) eta:3(s) loss:0.306015 loss200:0.306015 lr:0.00e+00[valid] 13/20 6(s) eta:3(s) loss:0.297321 loss200:0.297321 lr:0.00e+00[valid] 14/20 6(s) eta:2(s) loss:0.283449 loss200:0.283449 lr:0.00e+00[valid] 15/20 6(s) eta:2(s) loss:0.274624 loss200:0.274624 lr:0.00e+00[valid] 16/20 6(s) eta:1(s) loss:0.267140 loss200:0.267140 lr:0.00e+00[valid] 17/20 7(s) eta:1(s) loss:0.269784 loss200:0.269784 lr:0.00e+00[valid] 18/20 7(s) eta:0(s) loss:0.264356 loss200:0.264356 lr:0.00e+00[valid] 19/20 7(s) eta:0(s) loss:0.264843 loss200:0.264843 lr:0.00e+00[valid] 20/20 7(s) eta:0(s) loss:0.261048 loss200:0.261048 lr:0.00e+00[valid] 20/20 7(s) eta:0(s) loss:0.261048 loss200:0.261048 lr:0.00e+00 auc:0.7212 micro:0.7243 macro:0.7181
+0.223756 [0.389982 0.060851 0.232358 0.193714 0.104411 0.194995]
+saved model to ./model/model001/fold0_ep0.pt
+[best] ep:0 loss:0.2610 score:0.2238
+
+----- epoch 1 -----
+/home/xum/.conda/envs/kaggler/lib/python3.7/site-packages/torch/optim/lr_scheduler.py:73: UserWarning: Seems like `optimizer.step()` has been overridden after learning rate scheduler initialization. Please, make sure to call `optimizer.step()` before `lr_scheduler.step()`. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  "https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate", UserWarning)
+[train] 1/20 1(s) eta:19(s) loss:0.356377 loss200:0.356377 lr:4.00e-05[train] 2/20 2(s) eta:18(s) loss:0.293927 loss200:0.293927 lr:4.00e-05[train] 3/20 2(s) eta:11(s) loss:0.310968 loss200:0.310968 lr:4.00e-05[train] 4/20 2(s) eta:8(s) loss:0.319918 loss200:0.319918 lr:4.00e-05[train] 5/20 3(s) eta:9(s) loss:0.289265 loss200:0.289265 lr:4.00e-05[train] 6/20 3(s) eta:7(s) loss:0.282290 loss200:0.282290 lr:4.00e-05[train] 7/20 4(s) eta:7(s) loss:0.290941 loss200:0.290941 lr:4.00e-05[train] 8/20 4(s) eta:6(s) loss:0.287108 loss200:0.287108 lr:4.00e-05[train] 9/20 5(s) eta:6(s) loss:0.279151 loss200:0.279151 lr:4.00e-05[train] 10/20 5(s) eta:5(s) loss:0.272743 loss200:0.272743 lr:4.00e-05[train] 11/20 5(s) eta:4(s) loss:0.266828 loss200:0.266828 lr:4.00e-05[train] 12/20 6(s) eta:4(s) loss:0.265275 loss200:0.265275 lr:4.00e-05[train] 13/20 6(s) eta:3(s) loss:0.266095 loss200:0.266095 lr:4.00e-05[train] 14/20 7(s) eta:3(s) loss:0.266204 loss200:0.266204 lr:4.00e-05[train] 15/20 7(s) eta:2(s) loss:0.261175 loss200:0.261175 lr:4.00e-05[train] 16/20 7(s) eta:1(s) loss:0.258694 loss200:0.258694 lr:4.00e-05[train] 17/20 8(s) eta:1(s) loss:0.254141 loss200:0.254141 lr:4.00e-05[train] 18/20 8(s) eta:0(s) loss:0.258908 loss200:0.258908 lr:4.00e-05[train] 19/20 9(s) eta:0(s) loss:0.259895 loss200:0.259895 lr:4.00e-05[train] 20/20 9(s) eta:0(s) loss:0.258036 loss200:0.258036 lr:4.00e-05[train] 20/20 9(s) eta:0(s) loss:0.258036 loss200:0.258036 lr:4.00e-05 auc:0.8106 micro:0.8387 macro:0.7825
+0.221175 [0.341874 0.093855 0.221905 0.171712 0.158383 0.218622]
+[valid] 1/20 1(s) eta:19(s) loss:0.229767 loss200:0.229767 lr:0.00e+00[valid] 2/20 1(s) eta:9(s) loss:0.293514 loss200:0.293514 lr:0.00e+00[valid] 3/20 1(s) eta:5(s) loss:0.254328 loss200:0.254328 lr:0.00e+00[valid] 4/20 1(s) eta:4(s) loss:0.228460 loss200:0.228460 lr:0.00e+00[valid] 5/20 1(s) eta:3(s) loss:0.246679 loss200:0.246679 lr:0.00e+00[valid] 6/20 2(s) eta:4(s) loss:0.235113 loss200:0.235113 lr:0.00e+00[valid] 7/20 2(s) eta:3(s) loss:0.254323 loss200:0.254323 lr:0.00e+00[valid] 8/20 2(s) eta:3(s) loss:0.263028 loss200:0.263028 lr:0.00e+00[valid] 9/20 2(s) eta:2(s) loss:0.259601 loss200:0.259601 lr:0.00e+00[valid] 10/20 2(s) eta:2(s) loss:0.267352 loss200:0.267352 lr:0.00e+00[valid] 11/20 2(s) eta:1(s) loss:0.268707 loss200:0.268707 lr:0.00e+00[valid] 12/20 3(s) eta:2(s) loss:0.267624 loss200:0.267624 lr:0.00e+00[valid] 13/20 3(s) eta:1(s) loss:0.260738 loss200:0.260738 lr:0.00e+00[valid] 14/20 3(s) eta:1(s) loss:0.249300 loss200:0.249300 lr:0.00e+00[valid] 15/20 3(s) eta:1(s) loss:0.241660 loss200:0.241660 lr:0.00e+00[valid] 16/20 3(s) eta:0(s) loss:0.235064 loss200:0.235064 lr:0.00e+00[valid] 17/20 4(s) eta:0(s) loss:0.237339 loss200:0.237339 lr:0.00e+00[valid] 18/20 4(s) eta:0(s) loss:0.231809 loss200:0.231809 lr:0.00e+00[valid] 19/20 4(s) eta:0(s) loss:0.231497 loss200:0.231497 lr:0.00e+00[valid] 20/20 4(s) eta:0(s) loss:0.228907 loss200:0.228907 lr:0.00e+00[valid] 20/20 4(s) eta:0(s) loss:0.228907 loss200:0.228907 lr:0.00e+00 auc:0.8224 micro:0.8370 macro:0.8077
+0.196204 [0.340391 0.042187 0.215877 0.172307 0.09003  0.172248]
+saved model to ./model/model001/fold0_ep1.pt
+[best] ep:1 loss:0.2289 score:0.1962
+
+----- epoch 2 -----
+[train] 1/20 1(s) eta:19(s) loss:0.209165 loss200:0.209165 lr:2.67e-05[train] 2/20 2(s) eta:18(s) loss:0.198242 loss200:0.198242 lr:2.67e-05[train] 3/20 2(s) eta:11(s) loss:0.190857 loss200:0.190857 lr:2.67e-05[train] 4/20 2(s) eta:8(s) loss:0.194087 loss200:0.194087 lr:2.67e-05[train] 5/20 3(s) eta:9(s) loss:0.211867 loss200:0.211867 lr:2.67e-05[train] 6/20 3(s) eta:7(s) loss:0.226472 loss200:0.226472 lr:2.67e-05[train] 7/20 4(s) eta:7(s) loss:0.219244 loss200:0.219244 lr:2.67e-05[train] 8/20 4(s) eta:6(s) loss:0.218783 loss200:0.218783 lr:2.67e-05[train] 9/20 4(s) eta:4(s) loss:0.215508 loss200:0.215508 lr:2.67e-05[train] 10/20 5(s) eta:5(s) loss:0.227830 loss200:0.227830 lr:2.67e-05[train] 11/20 5(s) eta:4(s) loss:0.224823 loss200:0.224823 lr:2.67e-05[train] 12/20 6(s) eta:4(s) loss:0.220450 loss200:0.220450 lr:2.67e-05[train] 13/20 6(s) eta:3(s) loss:0.224148 loss200:0.224148 lr:2.67e-05[train] 14/20 7(s) eta:3(s) loss:0.223814 loss200:0.223814 lr:2.67e-05[train] 15/20 7(s) eta:2(s) loss:0.223314 loss200:0.223314 lr:2.67e-05[train] 16/20 7(s) eta:1(s) loss:0.222993 loss200:0.222993 lr:2.67e-05[train] 17/20 8(s) eta:1(s) loss:0.224073 loss200:0.224073 lr:2.67e-05[train] 18/20 8(s) eta:0(s) loss:0.220088 loss200:0.220088 lr:2.67e-05[train] 19/20 9(s) eta:0(s) loss:0.221862 loss200:0.221862 lr:2.67e-05[train] 20/20 9(s) eta:0(s) loss:0.217663 loss200:0.217663 lr:2.67e-05[train] 20/20 9(s) eta:0(s) loss:0.217663 loss200:0.217663 lr:2.67e-05 auc:0.8997 micro:0.9069 macro:0.8925
+0.186563 [0.297681 0.065485 0.18597  0.149515 0.124083 0.185528]
+[valid] 1/20 1(s) eta:19(s) loss:0.230257 loss200:0.230257 lr:0.00e+00[valid] 2/20 1(s) eta:9(s) loss:0.289011 loss200:0.289011 lr:0.00e+00[valid] 3/20 1(s) eta:5(s) loss:0.249960 loss200:0.249960 lr:0.00e+00[valid] 4/20 1(s) eta:4(s) loss:0.224228 loss200:0.224228 lr:0.00e+00[valid] 5/20 1(s) eta:3(s) loss:0.238572 loss200:0.238572 lr:0.00e+00[valid] 6/20 2(s) eta:4(s) loss:0.227957 loss200:0.227957 lr:0.00e+00[valid] 7/20 2(s) eta:3(s) loss:0.245188 loss200:0.245188 lr:0.00e+00[valid] 8/20 2(s) eta:3(s) loss:0.252867 loss200:0.252867 lr:0.00e+00[valid] 9/20 2(s) eta:2(s) loss:0.252070 loss200:0.252070 lr:0.00e+00[valid] 10/20 2(s) eta:2(s) loss:0.263640 loss200:0.263640 lr:0.00e+00[valid] 11/20 3(s) eta:2(s) loss:0.264814 loss200:0.264814 lr:0.00e+00[valid] 12/20 3(s) eta:2(s) loss:0.263664 loss200:0.263664 lr:0.00e+00[valid] 13/20 3(s) eta:1(s) loss:0.256906 loss200:0.256906 lr:0.00e+00[valid] 14/20 3(s) eta:1(s) loss:0.245170 loss200:0.245170 lr:0.00e+00[valid] 15/20 3(s) eta:1(s) loss:0.237511 loss200:0.237511 lr:0.00e+00[valid] 16/20 3(s) eta:0(s) loss:0.231427 loss200:0.231427 lr:0.00e+00[valid] 17/20 4(s) eta:0(s) loss:0.232878 loss200:0.232878 lr:0.00e+00[valid] 18/20 4(s) eta:0(s) loss:0.226335 loss200:0.226335 lr:0.00e+00[valid] 19/20 4(s) eta:0(s) loss:0.225327 loss200:0.225327 lr:0.00e+00[valid] 20/20 4(s) eta:0(s) loss:0.223457 loss200:0.223457 lr:0.00e+00[valid] 20/20 4(s) eta:0(s) loss:0.223457 loss200:0.223457 lr:0.00e+00 auc:0.8168 micro:0.8443 macro:0.7894
+0.191536 [0.330951 0.041945 0.219919 0.170101 0.084393 0.162491]
+saved model to ./model/model001/fold0_ep2.pt
+[best] ep:2 loss:0.2235 score:0.1915

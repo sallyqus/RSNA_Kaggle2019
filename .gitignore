@@ -4,7 +4,7 @@ data
 input
 model
 *.py[cod]
-*hup*
+hup
 core.*
 apex
 bin/.nfs0000000005a3b4b7000001ba
